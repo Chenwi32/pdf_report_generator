@@ -1,18 +1,16 @@
 import { Button, Container } from "@chakra-ui/react";
 import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
-const Generatepdf = () => {
-    const generateFile = ({ html }) => {
+const Generatepdf = ({ html }) => {
+    const generateFile = () => {
         const doc = new jsPDF()
-        
-        let split = doc.splitTextToSize(
-          document.getElementById("table").innerText,
-          200
-        );
 
-        doc.text(document.getElementById("table_content").innerHTML, 75, 5);
-        doc.text(split, 5, 75)
-        doc.output("dataurlnewwindow")
+        autoTable(doc, { html: "#table_content" });
+    
+        doc.output("dataurlnewwindow") 
+
+        doc.save("table.pdf");
   };
     return (
       <Container minW={1200}>
