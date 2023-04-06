@@ -26,145 +26,104 @@ export default function Home() {
       <Head>
         <title>Form</title>
       </Head>
-      <Container id="table" ref={ref} minW={1200}>
-        <TableContainer >
-          <Table id="table_content">
-            <Thead m={20} border='2px'>
+      <Container mt={10} id="table" ref={ref} maxW={1200}>
+        <TableContainer>
+          <Table colorScheme="teal" id="table_content">
+            <Thead m={20} bg="blue.100">
               <Tr>
-                <Th>To convert</Th>
-                <Th>into</Th>
-                <Th isNumeric>multiply by</Th>
+                <Th border="2px">To convert</Th>
+                <Th border="2px">into</Th>
+                <Th border="2px" isNumeric>
+                  multiply by
+                </Th>
               </Tr>
             </Thead>
             <Tbody>
               <Tr>
-                <Td>inches</Td>
-                <Td>millimetres (mm)</Td>
-                <Td isNumeric>25.4</Td>
+                <Td border="1px">inches</Td>
+                <Td border="1px">millimetres (mm)</Td>
+                <Td border="1px" isNumeric>
+                  25.4
+                </Td>
               </Tr>
               <Tr>
-                <Td>feet</Td>
-                <Td>centimetres (cm)</Td>
-                <Td isNumeric>30.48</Td>
+                <Td border="1px">feet</Td>
+                <Td border="1px">centimetres (cm)</Td>
+                <Td border="1px" isNumeric>
+                  30.48
+                </Td>
               </Tr>
               <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
+                <Td border="1px">yards</Td>
+                <Td border="1px">metres (m)</Td>
+                <Td border="1px" isNumeric>
+                  0.91444
+                </Td>
               </Tr>
               <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
+                <Td border="1px">yards</Td>
+                <Td border="1px">metres (m)</Td>
+                <Td border="1px" isNumeric>
+                  0.91444
+                </Td>
               </Tr>
               <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
+                <Td border="1px">yards</Td>
+                <Td border="1px">metres (m)</Td>
+                <Td border="1px" isNumeric>
+                  0.91444
+                </Td>
               </Tr>
               <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
+                <Td border="1px">yards</Td>
+                <Td border="1px">metres (m)</Td>
+                <Td border="1px" isNumeric>
+                  0.91444
+                </Td>
               </Tr>
               <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
+                <Td border="1px">yards</Td>
+                <Td border="1px">metres (m)</Td>
+                <Td border="1px" isNumeric>
+                  0.91444
+                </Td>
               </Tr>
               <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
+                <Td border="1px">yards</Td>
+                <Td border="1px">metres (m)</Td>
+                <Td border="1px" isNumeric>
+                  0.91444
+                </Td>
               </Tr>
               <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
+                <Td border="1px">yards</Td>
+                <Td border="1px">metres (m)</Td>
+                <Td border="1px" isNumeric>
+                  0.91444
+                </Td>
               </Tr>
               <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
+                <Td border="1px">yards</Td>
+                <Td border="1px">metres (m)</Td>
+                <Td border="1px" isNumeric>
+                  0.91444
+                </Td>
               </Tr>
               <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
+                <Td border="1px">yards</Td>
+                <Td border="1px">metres (m)</Td>
+                <Td border="1px" isNumeric>
+                  0.91444
+                </Td>
               </Tr>
               <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
-              </Tr>
-              <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
-              </Tr>
-              <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
-              </Tr>
-              <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
-              </Tr>
-              <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
-              </Tr>
-              <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
-              </Tr>
-              <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
-              </Tr>
-              <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
-              </Tr>
-              <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
-              </Tr>
-              <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
-              </Tr>
-              <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
-              </Tr>
-              <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
-              </Tr>
-              <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
-              </Tr>
-              <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
+                <Td border="1px">yards</Td>
+                <Td border="1px">metres (m)</Td>
+                <Td border="1px" isNumeric>
+                  0.91444
+                </Td>
               </Tr>
              
-             
-            
             </Tbody>
           </Table>
         </TableContainer>

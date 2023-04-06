@@ -8,6 +8,22 @@ npm run dev
 yarn dev
 ```
 
+```Dependencies
+    npm i -D prisma
+
+    npm install @prisma/client
+
+```
+
+```Prisma commands
+    npx prisma init
+    npx prisma db push
+
+# To make sure the Prisma client is up to date with your schema
+    npx prisma generate
+
+    npx prisma studio
+```
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
