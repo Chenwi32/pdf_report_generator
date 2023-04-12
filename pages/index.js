@@ -56,7 +56,7 @@ export default function Home(props) {
             <Thead m={20} bg="black">
               <Tr>
                 <Th color="white" border="2px">
-                  Subject / Tutor's name <br /> Discipline et Nom du Prof
+                  Subject / Tutor name <br /> Discipline et Nom du Prof
                 </Th>
                 <Th color="white" border="2px">
                   <Text>
@@ -79,7 +79,7 @@ export default function Home(props) {
                   position <br /> Rang
                 </Th>
                 <Th color="white" border="2px">
-                  Tutor's remark <br /> Signature
+                  Tutor remark <br /> Signature
                 </Th>
               </Tr>
             </Thead>

@@ -84,7 +84,7 @@ const Form = () => {
           <SimpleGrid maxW={800} m="auto" columns={2} gap={5} mb={5}>
             <Box>
               <Text fontSize={"0.9rem"} mb={2}>
-                * Subject / Teacher's Name :
+                * Subject / Teacher Name :
               </Text>
               <Input
                 value={S_T_name}
@@ -197,7 +197,7 @@ const Form = () => {
             </Box>
             <Box>
               <Text fontSize={"0.9rem"} mb={2}>
-                * Teacher's remark and signature :
+                * Teacher remark and signature :
               </Text>
               <Input
                 value={teacher_remark_sign}
@@ -354,7 +354,7 @@ const Form = () => {
             <ModalBody>
               <VStack alignItems={"flex-start"}>
                 <HStack>
-                  <Text> Subject / Teacher's Name :</Text>
+                  <Text> Subject / Teacher Name :</Text>
                   <Text fontWeight={600} color={"brand.400"}>
                     {S_T_name}
                   </Text>
@@ -403,7 +403,7 @@ const Form = () => {
                 </HStack>
 
                 <HStack>
-                  <Text>Teacher's remark and signature :</Text>
+                  <Text>Teacher remark and signature :</Text>
                   <Text fontWeight={600} color={"brand.400"}>
                     {teacher_remark_sign}
                   </Text>
