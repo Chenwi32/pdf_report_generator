@@ -40,7 +40,7 @@ model Student_record {
   total                    Int
   overall_position         Int
   class_av                 Int
-  student                  Student @relation(fields: [owner_id], references: [student_id])
+  student                  Student? @relation(fields: [owner_id], references: [student_id])
   owner_id                 Int
 }
 
@@ -52,6 +52,6 @@ model General_conduct {
   place_of_birth            String
   repeater                  Boolean?
   parent_or_guardian_adress String
-  student                   Student  @relation(fields: [owner_id], references: [student_id])
+  student                   Student?  @relation(fields: [owner_id], references: [student_id])
   owner_id                  Int
 }

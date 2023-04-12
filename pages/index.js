@@ -1,17 +1,28 @@
 import {
+  Button,
   Container,
   Heading,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   Table,
   TableContainer,
   Tbody,
   Td,
+  Text,
   Th,
   Thead,
   Tr,
+  useDisclosure,
 } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import { useRef } from "react";
+import { useRouter } from "next/router";
+import { useRef, useState } from "react";
 import prisma from "../lib/prisma";
 
 const Generatepdf = dynamic(() => import("../components/generatepdf"), {
@@ -19,8 +30,20 @@ const Generatepdf = dynamic(() => import("../components/generatepdf"), {
   ssr: false,
 });
 
-export default function Home({ student }) {
+export default function Home(props) {
+  const Router = useRouter();
   const ref = useRef();
+  /* Modal */
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [recordId, setRecordId] = useState();
+
+  async function deleteRecord(id) {
+    await fetch(`/api/${id}`, {
+      method: "DELETE",
+    });
+    onClose()
+    Router.push("/");
+  }
 
   return (
     <>
@@ -28,47 +51,86 @@ export default function Home({ student }) {
         <title>Form</title>
       </Head>
       <Container mt={10} id="table" ref={ref} maxW={1200}>
-        <TableContainer>
+        <TableContainer textAlign={"center"}>
           <Table id="table_content">
-            <Thead m={20} bg="black" color="white">
+            <Thead m={20} bg="black">
               <Tr>
-                <Th border="2px">
+                <Th color="white" border="2px">
                   Subject / Tutor's name <br /> Discipline et Nom du Prof
                 </Th>
-                <Th border="2px">
-                  5<sup>th</sup> seq
+                <Th color="white" border="2px">
+                  <Text>
+                    5<sup>th</sup> seq
+                  </Text>
                 </Th>
-                <Th border="2px">
+                <Th color="white" border="2px">
                   6<sup>th</sup> seq
                 </Th>
-                <Th border="2px" isNumeric>
+                <Th color="white" border="2px">
                   Term, AV <br /> Moy. Tr
                 </Th>
-                <Th border="2px" isNumeric>
+                <Th color="white" border="2px">
                   Coeff
                 </Th>
-                <Th border="2px" isNumeric>
+                <Th color="white" border="2px">
                   Total <br /> (NXC)
                 </Th>
-                <Th border="2px" isNumeric>
+                <Th color="white" border="2px">
                   position <br /> Rang
                 </Th>
-                <Th border="2px" isNumeric>
+                <Th color="white" border="2px">
                   Tutor's remark <br /> Signature
                 </Th>
               </Tr>
             </Thead>
             <Tbody>
-              <Tr>
-                <Td border="1px">English / Victorine </Td>
-                <Td border="1px">16</Td>
-                <Td border="1px">14</Td>
-                <Td border="1px">12</Td>
-                <Td border="1px">3</Td>
-                <Td border="1px">30</Td>
-                <Td border="1px">5<sup>th</sup></Td>
-                <Td border="1px">Fair</Td>
-              </Tr>
+              {props.Student_record.map((record) => (
+                <Tr
+                  key={record.record_id}
+                  onClick={() => {
+                    setRecordId(record.record_id);
+                    onOpen();
+                  }}
+                >
+                  <Td border="1px">{record.subject_and_teacher_name}</Td>
+                  <Td border="1px">{record.fifth_seq}</Td>
+                  <Td border="1px">{record.sixth_seq}</Td>
+                  <Td border="1px">{record.term_av}</Td>
+                  <Td border="1px">{record.coeff}</Td>
+                  <Td border="1px">{record.total_score} </Td>
+                  <Td border="1px">
+                    {record.position}
+                    <sup>th</sup>
+                  </Td>
+                  <Td border="1px">{record.teacher_remark_sign} </Td>
+
+                  <Modal isOpen={isOpen} onClose={onClose}>
+                    <ModalOverlay />
+                    <ModalContent>
+                      <ModalHeader>
+                        What would you like to do on record {recordId} ?
+                      </ModalHeader>
+                      <ModalCloseButton />
+                      <ModalBody>
+                        <Button mr={3} /* onClick={} */>Edit</Button>
+                        <Button
+                          onClick={() => {
+                            deleteRecord(recordId);
+                          }}
+                        >
+                          Delete
+                        </Button>
+                      </ModalBody>
+
+                      <ModalFooter>
+                        <Button colorScheme="blue" mr={3} onClick={onClose}>
+                          Cancel
+                        </Button>
+                      </ModalFooter>
+                    </ModalContent>
+                  </Modal>
+                </Tr>
+              ))}
             </Tbody>
           </Table>
         </TableContainer>
@@ -80,7 +142,6 @@ export default function Home({ student }) {
 
 export const getStaticProps = async () => {
   const Student_record = await prisma.Student_record.findMany();
-  console.log(Student_record);
   return {
     props: { Student_record },
     revalidate: 10,
