@@ -32,7 +32,6 @@ export default async function handler(req, res) {
       total: parseInt(total),
       overall_position: parseInt(overall_position),
       class_av: parseInt(class_av),
-      
       owner_id: parseInt(owner_id),
     },
   });
