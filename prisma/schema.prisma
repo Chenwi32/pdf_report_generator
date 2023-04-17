@@ -14,7 +14,7 @@ datasource db {
 
 
 model student {
-  student_id                Int               @id @unique @default(autoincrement())
+  student_id                Int               @id @unique 
   student_name              String
   student_class             String
   date_of_birth             DateTime
