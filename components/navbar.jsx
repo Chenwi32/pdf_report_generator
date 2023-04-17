@@ -5,9 +5,9 @@ const Navbar = () => {
   return (
     <Container p={0} >
       <Flex gap={5} p={5}>
-        <Link href="/form">Form</Link>
-
-        <Link href="/">Record</Link>
+        <Link href="/student_record">Fill Report</Link>
+	<Link href="/student">Register Student</Link>
+        <Link href="/">Report Card</Link>
       </Flex>
     </Container>
   );

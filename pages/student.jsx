@@ -262,7 +262,6 @@ const Form = () => {
                 <HStack>
                   <Text>Repeater? :</Text>
                   <Text fontWeight={600} color={"brand.400"}>
-                    
                     {repeater?.toString()}
                   </Text>
                 </HStack>
