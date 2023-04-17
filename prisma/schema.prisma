@@ -13,7 +13,7 @@ datasource db {
 
 
 
-model Student {
+model student {
   student_id                Int               @id @unique @default(autoincrement())
   student_name              String
   student_class             String
@@ -21,11 +21,11 @@ model Student {
   place_of_birth            String
   repeater                  Boolean?
   parent_or_guardian_adress String
-  General_conduct           General_conduct[]
-  Student_record            Student_record[]
+  general_conduct           general_conduct[]
+  student_record            student_record[]
 }
 
-model Student_record {
+model student_record {
   record_id                Int     @id @unique @default(autoincrement())
   subject_and_teacher_name String
   fifth_seq                Int
@@ -40,11 +40,11 @@ model Student_record {
   total                    Int
   overall_position         Int
   class_av                 Int
-  student                  Student? @relation(fields: [owner_id], references: [student_id])
+  student                  student? @relation(fields: [owner_id], references: [student_id])
   owner_id                 Int
 }
 
-model General_conduct {
+model general_conduct {
   id                        Int      @id @unique @default(autoincrement())
   student_name              String
   student_class             String
@@ -52,6 +52,6 @@ model General_conduct {
   place_of_birth            String
   repeater                  Boolean?
   parent_or_guardian_adress String
-  student                   Student?  @relation(fields: [owner_id], references: [student_id])
+  student                   student?  @relation(fields: [owner_id], references: [student_id])
   owner_id                  Int
 }

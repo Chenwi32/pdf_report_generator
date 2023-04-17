@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     parentOrGuardianAdress,
   } = req.body;
 
-  const result = await prisma.Student.create({
+  const result = await prisma.student.create({
     data: {
       student_id: parseInt(studentId),
       student_name: studentName,

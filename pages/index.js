@@ -84,7 +84,7 @@ export default function Home(props) {
               </Tr>
             </Thead>
             <Tbody>
-              {props.Student_record.map((record) => (
+              {props.student_record.map((record) => (
                 <Tr
                   key={record.record_id}
                   onClick={() => {
@@ -141,9 +141,9 @@ export default function Home(props) {
 }
 
 export const getStaticProps = async () => {
-  const Student_record = await prisma.Student_record.findMany();
+  const student_record = await prisma.student_record.findMany();
   return {
-    props: { Student_record },
+    props: { student_record },
     revalidate: 10,
   };
 };

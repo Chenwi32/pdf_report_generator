@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     owner_id,
   } = req.body; 
 
-  const result = await prisma.Student_record.create({
+  const result = await prisma.student_record.create({
     data: {
       subject_and_teacher_name: S_T_name,
       fifth_seq: parseInt(fifth_seq) ,

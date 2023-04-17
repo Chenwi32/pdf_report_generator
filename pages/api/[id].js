@@ -4,7 +4,7 @@ import prisma from "../../lib/prisma";
 export default async function handle(req, res) {
   const recordtId = req.query.id;
   if (req.method === "DELETE") {
-    const record = await prisma.Student_record.delete({
+    const record = await prisma.student_record.delete({
       where: { record_id: parseInt(recordtId)  },
     });
     res.json(record);
