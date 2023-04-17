@@ -3,6 +3,7 @@ import {
   Button,
   Checkbox,
   Container,
+  Flex,
   FormControl,
   HStack,
   Input,
@@ -29,7 +30,6 @@ const Form = () => {
   const [placeOfBirth, setPlaceOfBirth] = useState("");
   const [repeater, setRepeater] = useState(false);
   const [parentOrGuardianAdress, setParentOrGuardianAdress] = useState("");
-
 
   /* Modal */
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -58,16 +58,14 @@ const Form = () => {
     }
   };
 
- 
-
   return (
     <>
       <Head>
         <title> Student Registry</title>
       </Head>
-      <Container maxW={1200}>
+      <Container maxW={800}>
         <FormControl isRequired>
-          <SimpleGrid maxW={800} m="auto" columns={2} gap={5} mb={5}>
+          <SimpleGrid columns={2} gap={5} mb={10}>
             <Box>
               <Text fontSize={"0.9rem"} mb={2}>
                 * Student ID :
@@ -185,7 +183,9 @@ const Form = () => {
                 required
               />
             </Box>
+          </SimpleGrid>
 
+          <Flex justifyContent={"space-between"}>
             <Box>
               <Button
                 border={"1px"}
@@ -198,16 +198,18 @@ const Form = () => {
             </Box>
             <Box align={"right"}>
               <Button
+                bg={"blue"}
+                color={"white"}
                 border={"1px"}
-                _focusVisible={{
-                  border: "2px solid #00ebc7",
+                _hover={{
+                  bg: "",
                 }}
                 onClick={onOpen}
               >
                 Save
               </Button>
             </Box>
-          </SimpleGrid>
+          </Flex>
         </FormControl>
 
         {/* Modal */}
@@ -290,10 +292,10 @@ const Form = () => {
               <Button
                 onClick={submitReport}
                 _hover={{
-                  bg: "brand.200",
+                  bg: "",
                 }}
-                bg={"brand.100"}
-                color={"brand.400"}
+                bg={"blue"}
+                color={"white"}
               >
                 Save
               </Button>
