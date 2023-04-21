@@ -473,11 +473,11 @@ const Form = (props) => {
 };
 
 export const getServerSideProps = async (context) => {
-  const { id } = context.query;
+  const { form } = context.query;
 
   const student = await prisma.student.findFirst({
     where: {
-      student_id: parseInt(id),
+      student_id: parseInt(form),
     },
   });
 
