@@ -1,45 +1,45 @@
-import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  FormControl,
-  HStack,
-  Heading,
-  Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  SimpleGrid,
-  Text,
-  VStack,
-  useDisclosure,
-} from "@chakra-ui/react";
-import prisma from "../lib/prisma";
 import { useEffect, useRef, useState } from "react";
+import prisma from "../../lib/prisma";
+import { Box, Button, Container, Flex, FormControl, HStack, Heading, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, SimpleGrid, Text, VStack, useDisclosure } from "@chakra-ui/react";
 import Head from "next/head";
 
-const Form = (props) => {
+const Edit = (props) => {
   const ref = useRef();
 
-  const [S_T_name, setS_T_name] = useState();
-  const [fifth_seq, setFifth_seq] = useState(0);
-  const [sixth_seq, setSixth_seq] = useState(0);
-  const [term_av, setTerm_av] = useState();
-  const [coeff, setCoeff] = useState(0);
-  const [total_score, setTotal_score] = useState(0);
-  const [position, setPosition] = useState();
-  const [teacher_remark_sign, setTeacher_remark_sign] = useState();
-  const [first_term_av, setFirst_term_av] = useState();
-  const [second_term_av, setSecond_term_av] = useState();
-  const [total, setTotal] = useState();
-  const [overall_position, setOverall_position] = useState();
-  const [class_av, setClass_av] = useState();
-  const owner_id = props.student.student_id;
+                  
+  const {
+    record_id,
+    subject_and_teacher_name,
+    fifth_seq,
+    sixth_seq,
+    term_av,
+    coeff,
+    total_score,
+    position,
+    teacher_remark_sign,
+    first_term_av,
+    second_term_av,
+    total,
+    overall_position,
+    class_av,
+    owner_id,
+  } = props.report;
+
+
+  const [S_T_name, setS_T_name] = useState(subject_and_teacher_name);
+  const [fifthSeq, setFifthSeq] = useState(fifth_seq);
+  const [sixthSeq, setSixthSeq] = useState(sixth_seq);
+  const [termAv, setTermAv] = useState(term_av);
+  const [coefficient, setCoeff] = useState(coeff);
+  const [totalScore, setTotalScore] = useState(total_score);
+  const [positionInput, setPosition] = useState(position);
+  const [teacherRemarkSign, setTeacherRemarkSign] = useState(teacher_remark_sign);
+  const [firstTermAv, setFirstTermAv] = useState(first_term_av);
+  const [secondTermAv, setSecondTermAv] = useState(second_term_av);
+  const [totalInput, setTotal] = useState(total);
+  const [overallPosition, setOverallPosition] = useState(overall_position);
+  const [classAv, setClassAv] = useState(class_av);
+  
 
   /* Modal */
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -48,24 +48,25 @@ const Form = (props) => {
     e.preventDefault();
     try {
       const body = {
+        record_id,
         S_T_name,
-        fifth_seq,
-        sixth_seq,
-        term_av,
-        coeff,
-        total_score,
-        position,
-        teacher_remark_sign,
-        first_term_av,
-        second_term_av,
-        total,
-        overall_position,
-        class_av,
+        fifthSeq,
+        sixthSeq,
+        termAv,
+        coefficient,
+        totalScore,
+        positionInput,
+        teacherRemarkSign,
+        firstTermAv,
+        secondTermAv,
+        totalInput,
+        overallPosition,
+        classAv,
         owner_id,
       };
 
-      await fetch("/api/fill_report", {
-        method: "POST",
+      await fetch("/api/edit_report", {
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
@@ -76,8 +77,8 @@ const Form = (props) => {
   };
 
   useEffect(() => {
-    setTotal_score(sixth_seq * coeff + fifth_seq * coeff);
-  }, [sixth_seq, fifth_seq, coeff]);
+    setTotalScore(sixthSeq * coeff + fifthSeq * coefficient);
+  }, [sixthSeq, fifthSeq, coefficient]);
 
   return (
     <>
@@ -88,17 +89,7 @@ const Form = (props) => {
         <Heading mb={5}>Student Report</Heading>
 
         
-          <Flex mb={5} gap={5}>
-            <HStack>
-              <Text>Student Name:</Text>
-              <Text fontWeight={800}>{props.student.student_name}</Text>
-            </HStack>
-            <HStack>
-              <Text>Student ID:</Text>
-              <Text fontWeight={800}>{owner_id}</Text>
-            </HStack>
-          </Flex>
-        
+
         <FormControl isRequired>
           <SimpleGrid columns={2} gap={5} mb={5}>
             <Box>
@@ -125,9 +116,9 @@ const Form = (props) => {
                 * Fifth Sequence :
               </Text>
               <Input
-                value={fifth_seq}
+                value={fifthSeq}
                 onChange={(e) => {
-                  setFifth_seq(e.target.value);
+                  setFifthSeq(e.target.value);
                 }}
                 type="text"
                 border={"1px"}
@@ -143,9 +134,9 @@ const Form = (props) => {
                 Sixth Sequence :
               </Text>
               <Input
-                value={sixth_seq}
+                value={sixthSeq}
                 onChange={(e) => {
-                  setSixth_seq(e.target.value);
+                  setSixthSeq(e.target.value);
                 }}
                 type="text"
                 border={"1px"}
@@ -160,9 +151,9 @@ const Form = (props) => {
                 * Term Average :
               </Text>
               <Input
-                value={term_av}
+                value={termAv}
                 onChange={(e) => {
-                  setTerm_av(e.target.value);
+                  setTermAv(e.target.value);
                 }}
                 type="number"
                 border={"1px"}
@@ -177,7 +168,7 @@ const Form = (props) => {
                 * Coefficient :
               </Text>
               <Input
-                value={coeff}
+                value={coefficient}
                 onChange={(e) => {
                   setCoeff(e.target.value);
                 }}
@@ -194,7 +185,7 @@ const Form = (props) => {
                 * Total Score :
               </Text>
               <Text border={"1px"} p={2} textAlign={"center"}>
-                {total_score}
+                {totalScore}
               </Text>
             </Box>
             <Box>
@@ -202,7 +193,7 @@ const Form = (props) => {
                 * Position :
               </Text>
               <Input
-                value={position}
+                value={positionInput}
                 onChange={(e) => {
                   setPosition(e.target.value);
                 }}
@@ -219,9 +210,9 @@ const Form = (props) => {
                 * Teacher remark and signature :
               </Text>
               <Input
-                value={teacher_remark_sign}
+                value={teacherRemarkSign}
                 onChange={(e) => {
-                  setTeacher_remark_sign(e.target.value);
+                  setTeacherRemarkSign(e.target.value);
                 }}
                 type="text"
                 border={"1px"}
@@ -237,9 +228,9 @@ const Form = (props) => {
                 * First term average :
               </Text>
               <Input
-                value={first_term_av}
+                value={firstTermAv}
                 onChange={(e) => {
-                  setFirst_term_av(e.target.value);
+                  setFirstTermAv(e.target.value);
                 }}
                 type="number"
                 border={"1px"}
@@ -254,9 +245,9 @@ const Form = (props) => {
                 * Second term average :
               </Text>
               <Input
-                value={second_term_av}
+                value={secondTermAv}
                 onChange={(e) => {
-                  setSecond_term_av(e.target.value);
+                  setSecondTermAv(e.target.value);
                 }}
                 type="number"
                 border={"1px"}
@@ -271,7 +262,7 @@ const Form = (props) => {
                 * Grand Total :
               </Text>
               <Input
-                value={total}
+                value={totalInput}
                 onChange={(e) => {
                   setTotal(e.target.value);
                 }}
@@ -288,9 +279,9 @@ const Form = (props) => {
                 * Overall Position :
               </Text>
               <Input
-                value={overall_position}
+                value={overallPosition}
                 onChange={(e) => {
-                  setOverall_position(e.target.value);
+                  setOverallPosition(e.target.value);
                 }}
                 type="text"
                 border={"1px"}
@@ -305,9 +296,9 @@ const Form = (props) => {
                 * Class average :
               </Text>
               <Input
-                value={class_av}
+                value={classAv}
                 onChange={(e) => {
-                  setClass_av(e.target.value);
+                  setClassAv(e.target.value);
                 }}
                 type="number"
                 border={"1px"}
@@ -318,7 +309,7 @@ const Form = (props) => {
               />
             </Box>
           </SimpleGrid>
-          <Flex justifyContent={'space-between'}>
+          <Flex justifyContent={"space-between"}>
             <Button
               border={"1px"}
               _focusVisible={{
@@ -366,84 +357,84 @@ const Form = (props) => {
                 <HStack>
                   <Text>Fifth Sequence :</Text>
                   <Text fontWeight={600} color={"brand.400"}>
-                    {fifth_seq}
+                    {fifthSeq}
                   </Text>
                 </HStack>
 
                 <HStack>
                   <Text>Sixth Sequence :</Text>
                   <Text fontWeight={600} color={"brand.400"}>
-                    {sixth_seq}
+                    {sixthSeq}
                   </Text>
                 </HStack>
 
                 <HStack>
                   <Text>Term Average :</Text>
                   <Text fontWeight={600} color={"brand.400"}>
-                    {term_av}
+                    {termAv}
                   </Text>
                 </HStack>
 
                 <HStack>
                   <Text>Coefficient :</Text>
                   <Text fontWeight={600} color={"brand.400"}>
-                    {coeff}
+                    {coefficient}
                   </Text>
                 </HStack>
 
                 <HStack>
                   <Text>Total Score :</Text>
                   <Text fontWeight={600} color={"brand.400"}>
-                    {total_score}
+                    {totalScore}
                   </Text>
                 </HStack>
 
                 <HStack>
                   <Text>Position :</Text>
                   <Text fontWeight={600} color={"brand.400"}>
-                    {position}
+                    {positionInput}
                   </Text>
                 </HStack>
 
                 <HStack>
                   <Text>Teacher remark and signature :</Text>
                   <Text fontWeight={600} color={"brand.400"}>
-                    {teacher_remark_sign}
+                    {teacherRemarkSign}
                   </Text>
                 </HStack>
 
                 <HStack>
                   <Text>First term average :</Text>
                   <Text fontWeight={600} color={"brand.400"}>
-                    {first_term_av}
+                    {firstTermAv}
                   </Text>
                 </HStack>
 
                 <HStack>
                   <Text>Second term average :</Text>
                   <Text fontWeight={600} color={"brand.400"}>
-                    {second_term_av}
+                    {secondTermAv}
                   </Text>
                 </HStack>
 
                 <HStack>
                   <Text>Grand Total :</Text>
                   <Text fontWeight={600} color={"brand.400"}>
-                    {total}
+                    {totalInput}
                   </Text>
                 </HStack>
 
                 <HStack>
                   <Text>Overall Position :</Text>
                   <Text fontWeight={600} color={"brand.400"}>
-                    {overall_position}
+                    {overallPosition}
                   </Text>
                 </HStack>
 
                 <HStack>
                   <Text>Class average :</Text>
                   <Text fontWeight={600} color={"brand.400"}>
-                    {class_av}
+                    {classAv}
                   </Text>
                 </HStack>
 
@@ -488,19 +479,19 @@ const Form = (props) => {
 };
 
 export const getServerSideProps = async (context) => {
-  const { form } = context.query;
+  const { edit } = context.query;
 
-  const student = await prisma.student.findFirst({
+  const report = await prisma.student_record.findFirst({
     where: {
-      student_id: parseInt(form),
+      record_id: parseInt(edit),
     },
   });
 
   return {
     props: {
-      student: JSON.parse(JSON.stringify(student)),
+      report: JSON.parse(JSON.stringify(report)),
     },
   };
 };
 
-export default Form;
+export default Edit

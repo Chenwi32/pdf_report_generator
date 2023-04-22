@@ -16,6 +16,7 @@ import {
   Text,
   Th,
   Thead,
+  Tooltip,
   Tr,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -85,7 +86,15 @@ export default function Home(props) {
             </Thead>
             <Tbody>
               {props.student_record.map((record) => (
-                <Tr
+                <Tooltip
+                      hasArrow
+                      label={`Click to edit ${record.subject_and_teacher_name} record`}
+                      aria-label="A tooltip"
+                      p={3}
+                      mt={-15}
+                      ml={-20}
+                    >
+                  <Tr
                   key={record.record_id}
                   onClick={() => {
                     setRecordId(record.record_id);
@@ -112,7 +121,7 @@ export default function Home(props) {
                       </ModalHeader>
                       <ModalCloseButton />
                       <ModalBody>
-                        <Button mr={3} /* onClick={} */>Edit</Button>
+                        <Button mr={3} onClick={()=> Router.push(`/edit/${recordId}`)}>Edit</Button>
                         <Button
                           onClick={() => {
                             deleteRecord(recordId);
@@ -130,6 +139,8 @@ export default function Home(props) {
                     </ModalContent>
                   </Modal>
                 </Tr>
+                    </Tooltip>
+                
               ))}
             </Tbody>
           </Table>
