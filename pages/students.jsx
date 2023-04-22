@@ -101,10 +101,10 @@ const Students = (props) => {
                       p={3}
                       mt={-15}
                       ml={-20}
+                      key={student.student_id}
                     >
                       <Tr
                         onClick={() => router.push(`/${student.student_id}`)}
-                        key={student.student_id}
                         cursor={"pointer"}
                       >
                         <Td border="1px">{student.student_id}</Td>

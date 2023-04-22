@@ -92,10 +92,11 @@ export default function Home(props) {
                       aria-label="A tooltip"
                       p={3}
                       mt={-15}
-                      ml={-20}
+                  ml={-20}
+                  key={record.record_id}
                     >
                   <Tr
-                  key={record.record_id}
+                  
                   onClick={() => {
                     setRecordId(record.record_id);
                     onOpen();
